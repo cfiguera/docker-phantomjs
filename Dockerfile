@@ -2,6 +2,8 @@ FROM ubuntu:trusty
 MAINTAINER Carles Figuera <cfiguera@referup.com>
 
 ENV PHANTOMJS_VERSION 2.0.0
+ENV PHANTOMJS_HOME /tmp/phantomjs
+ENV ISSUE_DIR src/qt/qtbase/src/platformsupport/fontdatabases/fontconfig/
 
 RUN apt-get update -qq && apt-get upgrade -y && apt-get install -y \
   git \
@@ -21,7 +23,12 @@ RUN apt-get update -qq && apt-get upgrade -y && apt-get install -y \
   libjpeg-dev \
   libqt5webkit5-dev
 
-RUN git clone https://github.com/ariya/phantomjs.git /tmp/phantomjs && \
-  cd /tmp/phantomjs && git checkout $PHANTOMJS_VERSION && \
+RUN git clone https://github.com/ariya/phantomjs.git $PHANTOMJS_HOME
+
+RUN cd $PHANTOMJS_HOME/$ISSUE_DIR
+RUN mv qfontconfigdatabase.cpp qfontconfigdatabase.original.cpp
+ADD qfontconfigdatabase.cpp $PHANTOMJS_HOME/$ISSUE_DIR
+
+RUN cd $PHANTOMJS_HOME && git checkout $PHANTOMJS_VERSION && \
   ./build.sh --confirm && mv bin/phantomjs /usr/local/bin && \
-  rm -rf /tmp/phantomjs
+  rm -rf $PHANTOMJS_HOME
