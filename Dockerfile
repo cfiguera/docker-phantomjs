@@ -20,8 +20,7 @@ RUN apt-get update -qq && apt-get upgrade -y && apt-get install -y \
     libssl-dev \
     libpng-dev \
     libjpeg-dev \
-    libqt5webkit5-dev \
-    ttf-mscorefonts-installer
+    libqt5webkit5-dev
 
 RUN git clone --recurse-submodules https://github.com/ariya/phantomjs.git $PHANTOMJS_HOME
 
