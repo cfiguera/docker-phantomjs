@@ -23,7 +23,7 @@ RUN apt-get update -qq && apt-get upgrade -y && apt-get install -y \
   libjpeg-dev \
   libqt5webkit5-dev
 
-RUN git clone https://github.com/ariya/phantomjs.git $PHANTOMJS_HOME
+RUN git clone https://github.com/ariya/phantomjs.git /tmp
 
 RUN cd $PHANTOMJS_HOME/$ISSUE_DIR
 RUN mv qfontconfigdatabase.cpp qfontconfigdatabase.original.cpp
