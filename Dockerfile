@@ -26,9 +26,10 @@ RUN git clone --recurse-submodules https://github.com/ariya/phantomjs.git $PHANT
 
 #Replace qfontconfigdatabase.cpp with issue solved
 RUN mv $PHANTOMJS_HOME/$ISSUE_DIR/qfontconfigdatabase.cpp $PHANTOMJS_HOME/$ISSUE_DIR/qfontconfigdatabase.original.cpp
+RUN rm -rf $PHANTOMJS_HOME/$ISSUE_DIR/qfontconfigdatabase.cpp
 ADD qfontconfigdatabase.cpp $PHANTOMJS_HOME/$ISSUE_DIR
 
 RUN cd $PHANTOMJS_HOME && \
-    ./build.py && \
+    ./build.py --confirm && \
     mv bin/phantomjs /usr/local/bin && \
     rm -rf $PHANTOMJS_HOME
