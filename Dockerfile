@@ -3,7 +3,7 @@ MAINTAINER Carles Figuera <cfiguera@referup.com>
 
 ENV PHANTOMJS_VERSION 2.1.1
 
-RUN apt-get update -y && apt-get upgrade -y && apt-get install -y \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     wget \
     bzip2 \
     libsqlite3-dev \
