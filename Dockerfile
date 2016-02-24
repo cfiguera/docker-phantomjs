@@ -20,3 +20,7 @@ RUN wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-$PHANTOMJS_VE
     mv phantomjs-$PHANTOMJS_VERSION-linux-x86_64 /opt/phantom && \
     ln -s /opt/phantom/bin/phantomjs /usr/local/bin/phantomjs && \
     rm phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2
+
+RUN apt-get autoremove -y && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
